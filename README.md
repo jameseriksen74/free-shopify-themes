@@ -13,15 +13,18 @@ Three free, modern **Shopify Online Store 2.0** themes, made with care by **[Pre
 ## Previews
 
 ### Petalpost
-![Petalpost desktop](screenshots/petalpost-default-desktop.png)
+![Petalpost mockup](mockups/petalpost-mockup.png)
+![Petalpost presets](mockups/petalpost-presets.png)
 
 ### Zapline
-![Zapline desktop](screenshots/zapline-zapline-desktop.png)
+![Zapline mockup](mockups/zapline-mockup.png)
+![Zapline presets](mockups/zapline-presets.png)
 
 ### Stillroom
-![Stillroom desktop](screenshots/stillroom-stillroom-desktop.png)
+![Stillroom mockup](mockups/stillroom-mockup.png)
+![Stillroom presets](mockups/stillroom-presets.png)
 
-*Previews use placeholder artwork. Your product photos go in their place.*
+Full-page screenshots of every preset are in [`screenshots/`](screenshots/). *Previews use placeholder artwork. Your product photos go in their place.*
 
 ## Features (all three themes)
 
