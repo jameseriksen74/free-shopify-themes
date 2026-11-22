@@ -1,0 +1,47 @@
+{
+  "current": "Stillroom",
+  "presets": {
+    "Stillroom": {
+      "color_background": "#FFFFFF",
+      "color_surface": "#F4F4F2",
+      "color_text": "#141414",
+      "color_accent": "#141414",
+      "color_accent_text": "#FFFFFF",
+      "color_secondary": "#3D5AFE",
+      "color_sale": "#D93B30",
+      "type_heading_font": "jost_n4",
+      "type_body_font": "jost_n4",
+      "corner_radius": 4,
+      "button_radius": 4,
+      "page_width": 1440
+    },
+    "Stone": {
+      "color_background": "#F2EFEA",
+      "color_surface": "#E6E1D9",
+      "color_text": "#22201C",
+      "color_accent": "#22201C",
+      "color_accent_text": "#F2EFEA",
+      "color_secondary": "#A5835C",
+      "color_sale": "#B0412E",
+      "type_heading_font": "jost_n4",
+      "type_body_font": "jost_n4",
+      "corner_radius": 4,
+      "button_radius": 4,
+      "page_width": 1440
+    },
+    "Ocean": {
+      "color_background": "#F5F8FA",
+      "color_surface": "#E5EDF2",
+      "color_text": "#0F2233",
+      "color_accent": "#1F5EFF",
+      "color_accent_text": "#FFFFFF",
+      "color_secondary": "#0FB5A6",
+      "color_sale": "#E0453A",
+      "type_heading_font": "jost_n4",
+      "type_body_font": "jost_n4",
+      "corner_radius": 4,
+      "button_radius": 4,
+      "page_width": 1440
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="section">
+  <div class="page-width page-width--form">
+    <h1 class="h1">{{ 'customer.login.title' | t }}</h1>
+    {%- form 'customer_login', novalidate: 'novalidate', class: 'form-stack' -%}
+      {%- if form.errors -%}<div class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <label for="LoginEmail">{{ 'customer.fields.email' | t }}</label>
+      <input id="LoginEmail" class="field" type="email" name="customer[email]" autocomplete="email" required>
+      {%- if form.password_needed -%}
+        <label for="LoginPassword">{{ 'customer.fields.password' | t }}</label>
+        <input id="LoginPassword" class="field" type="password" name="customer[password]" autocomplete="current-password" required>
+      {%- endif -%}
+      <button class="button button--full" type="submit">{{ 'customer.login.submit' | t }}</button>
+      <a class="link-small" href="{{ routes.account_register_url }}">{{ 'customer.login.create' | t }}</a>
+    {%- endform -%}
+
+    <details class="recover">
+      <summary class="link-small">{{ 'customer.recover.link' | t }}</summary>
+      {%- form 'recover_customer_password', class: 'form-stack' -%}
+        {%- if form.posted_successfully? -%}<p class="form-message form-message--success" role="status">{{ 'customer.recover.success' | t }}</p>{%- endif -%}
+        <label for="RecoverEmail">{{ 'customer.fields.email' | t }}</label>
+        <input id="RecoverEmail" class="field" type="email" name="email" autocomplete="email" required>
+        <button class="button button--outline" type="submit">{{ 'customer.recover.submit' | t }}</button>
+      {%- endform -%}
+    </details>
+
+    {%- if shop.checkout.guest_login -%}
+      {%- form 'guest_login' -%}
+        <button class="button button--outline button--full" type="submit">{{ 'customer.login.guest' | t }}</button>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Customer login", "settings": [] }
+{% endschema %}

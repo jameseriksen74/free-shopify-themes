@@ -1,0 +1,93 @@
+{%- paginate collection.products by section.settings.per_page -%}
+<div class="section section-{{ section.id }}">
+  <div class="page-width">
+    <div class="collection-hero">
+      <h1 class="h1">{{ collection.title | escape }}</h1>
+      {%- if collection.description != blank -%}<div class="rte collection-hero__text">{{ collection.description }}</div>{%- endif -%}
+    </div>
+
+    <form class="facets" data-facets action="{{ collection.url }}" method="get">
+      <div class="facets__filters">
+        {%- for filter in collection.filters -%}
+          <details class="facet">
+            <summary class="pill facet__summary">{{ filter.label | escape }}{% if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif %} {% render 'icon', icon: 'caret' %}</summary>
+            <div class="facet__panel card">
+              {%- case filter.type -%}
+                {%- when 'price_range' -%}
+                  <div class="facet__price">
+                    <label>{{ 'collections.filters.from' | t }}
+                      <input class="field" type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="0">
+                    </label>
+                    <label>{{ 'collections.filters.to' | t }}
+                      <input class="field" type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                    </label>
+                  </div>
+                {%- else -%}
+                  <ul class="facet__list" role="list">
+                    {%- for value in filter.values -%}
+                      <li>
+                        <label class="checkbox{% if value.count == 0 and value.active == false %} is-disabled{% endif %}">
+                          <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                          {{ value.label | escape }} <span class="muted">({{ value.count }})</span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+              {%- endcase -%}
+              <button type="submit" class="button button--small">{{ 'collections.filters.apply' | t }}</button>
+            </div>
+          </details>
+        {%- endfor -%}
+      </div>
+      <div class="facets__sort">
+        <label for="SortBy" class="muted">{{ 'collections.sorting.title' | t }}</label>
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        <select id="SortBy" name="sort_by" class="field field--select" data-auto-submit>
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+          {%- endfor -%}
+        </select>
+      </div>
+    </form>
+
+    {%- assign active_count = 0 -%}
+    {%- for filter in collection.filters -%}{%- assign active_count = active_count | plus: filter.active_values.size -%}{%- endfor -%}
+    {%- if active_count > 0 -%}
+      <div class="active-filters">
+        {%- for filter in collection.filters -%}
+          {%- for value in filter.active_values -%}
+            <a class="pill pill--active" href="{{ value.url_to_remove }}">{{ value.label | escape }} &times;</a>
+          {%- endfor -%}
+        {%- endfor -%}
+        <a class="link-arrow" href="{{ collection.url }}?sort_by={{ sort_by }}">{{ 'collections.filters.clear_all' | t }}</a>
+      </div>
+    {%- endif -%}
+
+    <p class="muted collection-count">{{ 'collections.product_count' | t: count: collection.products_count }}</p>
+
+    {%- if collection.products.size == 0 -%}
+      <p class="empty-state">{{ 'collections.empty' | t }}</p>
+    {%- else -%}
+      <ul class="product-grid product-grid--{{ section.settings.columns }}" role="list">
+        {%- for product in collection.products -%}
+          <li>{% render 'product-card', product: product %}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if paginate.pages > 1 -%}
+      {% render 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </div>
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 16 },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 5, "step": 1, "default": 4 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders a price. Accepts: product (required), variant (optional)
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign price = target.price
+  assign compare_at = target.compare_at_price
+  if variant == blank
+    assign price = product.price
+    assign compare_at = product.compare_at_price
+  endif
+-%}
+<div class="price{% if compare_at > price %} price--sale{% endif %}">
+  {%- if variant == blank and product.price_varies -%}
+    <span class="price__current">{{ 'products.product.price_from' | t: price: price | money }}</span>
+  {%- else -%}
+    <span class="price__current">{{ price | money }}</span>
+  {%- endif -%}
+  {%- if compare_at > price -%}
+    <s class="price__compare"><span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>{{ compare_at | money }}</s>
+  {%- endif -%}
+  {%- if target.unit_price_measurement -%}
+    <span class="price__unit muted">{{ target.unit_price | money }}/{%- if target.unit_price_measurement.reference_value != 1 -%}{{ target.unit_price_measurement.reference_value }}{%- endif -%}{{ target.unit_price_measurement.reference_unit }}</span>
+  {%- endif -%}
+</div>

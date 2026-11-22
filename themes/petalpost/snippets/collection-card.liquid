@@ -1,0 +1,18 @@
+{%- comment -%} Accepts: collection (optional) {%- endcomment -%}
+{%- if collection != blank -%}
+  <a href="{{ collection.url }}" class="collection-card">
+    <div class="media-frame media-frame--portrait">
+      {%- if collection.featured_image -%}
+        {{ collection.featured_image | image_url: width: 900 | image_tag: widths: '300, 600, 900', sizes: '(min-width: 990px) 33vw, 50vw', loading: 'lazy', class: 'cover' }}
+      {%- else -%}
+        {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    <span class="collection-card__title">{{ collection.title | escape }} {% render 'icon', icon: 'arrow' %}</span>
+  </a>
+{%- else -%}
+  <div class="collection-card">
+    <div class="media-frame media-frame--portrait">{{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <span class="collection-card__title">{{ 'sections.collection_list.placeholder' | t }}</span>
+  </div>
+{%- endif -%}

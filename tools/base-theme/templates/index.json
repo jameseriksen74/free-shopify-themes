@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "featured": { "type": "featured-collection", "settings": { "collection": "all" } },
+    "collections": { "type": "collection-list", "blocks": { "c1": { "type": "collection", "settings": {} }, "c2": { "type": "collection", "settings": {} }, "c3": { "type": "collection", "settings": {} } }, "block_order": ["c1", "c2", "c3"], "settings": {} },
+    "story": { "type": "image-with-text", "settings": {} },
+    "quotes": { "type": "testimonials", "blocks": { "q1": { "type": "quote", "settings": {} }, "q2": { "type": "quote", "settings": { "quote": "My new favourite little shop. Everything feels considered.", "author": "Repeat customer" } }, "q3": { "type": "quote", "settings": { "quote": "Arrived fast and wrapped like a gift.", "author": "Verified buyer" } } }, "block_order": ["q1", "q2", "q3"], "settings": {} }
+  },
+  "order": ["hero", "featured", "collections", "story", "quotes"]
+}

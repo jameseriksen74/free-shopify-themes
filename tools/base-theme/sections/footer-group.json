@@ -1,0 +1,20 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "newsletter": {
+      "type": "newsletter",
+      "settings": { "heading": "Join the list", "text": "<p>New arrivals, little stories and the occasional treat. No spam, ever.</p>" }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "about": { "type": "text", "settings": { "heading": "About us", "text": "<p>Tell customers what makes your shop special.</p>" } },
+        "menu": { "type": "menu", "settings": { "heading": "Shop", "menu": "footer" } }
+      },
+      "block_order": ["about", "menu"],
+      "settings": {}
+    }
+  },
+  "order": ["newsletter", "footer"]
+}

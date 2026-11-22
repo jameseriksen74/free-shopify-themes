@@ -1,0 +1,18 @@
+<div class="section">
+  <div class="page-width page-width--form">
+    <h1 class="h1">{{ 'customer.activate.title' | t }}</h1>
+    {%- form 'activate_customer_password', class: 'form-stack' -%}
+      {%- if form.errors -%}<div class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <label for="ActivatePassword">{{ 'customer.fields.password' | t }}</label>
+      <input id="ActivatePassword" class="field" type="password" name="customer[password]" autocomplete="new-password">
+      <label for="ActivateConfirm">{{ 'customer.fields.password_confirm' | t }}</label>
+      <input id="ActivateConfirm" class="field" type="password" name="customer[password_confirmation]" autocomplete="new-password">
+      <button class="button" type="submit">{{ 'customer.activate.submit' | t }}</button>
+      <button class="button button--outline" type="submit" name="decline">{{ 'customer.activate.decline' | t }}</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Activate account", "settings": [] }
+{% endschema %}

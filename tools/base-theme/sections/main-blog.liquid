@@ -1,0 +1,17 @@
+{%- paginate blog.articles by 9 -%}
+<div class="section">
+  <div class="page-width">
+    <div class="collection-hero"><h1 class="h1">{{ blog.title | escape }}</h1></div>
+    <ul class="article-grid" role="list">
+      {%- for article in blog.articles -%}
+        <li>{% render 'article-card', article: article %}</li>
+      {%- endfor -%}
+    </ul>
+    {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+  </div>
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{ "name": "Blog posts", "settings": [] }
+{% endschema %}

@@ -1,0 +1,17 @@
+<div class="page-width">
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <div class="section-header"><h2 class="h2">{{ 'sections.related_products.heading' | t }}</h2></div>
+    <ul class="product-grid product-grid--4" role="list">
+      {%- for product in recommendations.products -%}
+        <li>{% render 'product-card', product: product %}</li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": []
+}
+{% endschema %}

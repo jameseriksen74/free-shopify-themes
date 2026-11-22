@@ -1,0 +1,63 @@
+{%- liquid
+  assign img = section.settings.image
+  assign height_class = 'hero--' | append: section.settings.height
+-%}
+<div class="section hero {{ height_class }} hero--{{ section.settings.layout }} section-{{ section.id }}">
+  <div class="hero__media">
+    {%- if img != blank -%}
+      {{ img | image_url: width: 2400 | image_tag:
+        widths: '600, 900, 1200, 1600, 2000, 2400',
+        sizes: '100vw',
+        loading: 'eager',
+        fetchpriority: 'high',
+        class: 'hero__image',
+        alt: img.alt | default: section.settings.heading
+      }}
+    {%- else -%}
+      <div class="hero__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    {%- endif -%}
+  </div>
+  <div class="hero__content page-width">
+    <div class="hero__box">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hero__heading display">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="hero__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="button button--large">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "height", "label": "Height", "default": "large",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ] },
+    { "type": "select", "id": "layout", "label": "Text position", "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "split", "label": "Split (image beside text)" }
+      ] },
+    { "type": "text", "id": "eyebrow", "label": "Small text above heading", "default": "New season" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Little luxuries, made to keep" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Thoughtfully chosen pieces for everyday joy.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the collection" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Hero banner" }]
+}
+{% endschema %}

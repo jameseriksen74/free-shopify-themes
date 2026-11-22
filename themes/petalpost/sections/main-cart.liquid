@@ -1,0 +1,76 @@
+<div class="section">
+  <div class="page-width page-width--narrow">
+    <h1 class="h1">{{ 'cart.title' | t }}</h1>
+    {%- if cart.item_count == 0 -%}
+      <div class="empty-state">
+        <p>{{ 'cart.empty' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="button">{{ 'cart.continue' | t }}</a>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" id="CartForm" class="cart">
+        <ul class="cart__items" role="list">
+          {%- for item in cart.items -%}
+            <li class="cart-item">
+              <a href="{{ item.url }}" class="cart-item__image media-frame">
+                {%- if item.image -%}
+                  {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'cover', sizes: '120px', alt: item.product.title }}
+                {%- endif -%}
+              </a>
+              <div class="cart-item__details">
+                <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title | escape }}</a>
+                {%- unless item.product.has_only_default_variant -%}<p class="muted">{{ item.variant.title | escape }}</p>{%- endunless -%}
+                {%- for property in item.properties -%}
+                  {%- unless property.last == blank or property.first contains '_' -%}
+                    <p class="muted">{{ property.first }}: {{ property.last }}</p>
+                  {%- endunless -%}
+                {%- endfor -%}
+                {%- for discount in item.line_level_discount_allocations -%}
+                  <p class="badge">{{ discount.discount_application.title | escape }} (-{{ discount.amount | money }})</p>
+                {%- endfor -%}
+                {%- if item.unit_price_measurement -%}
+                  <p class="muted">{{ item.unit_price | money }}/{{ item.unit_price_measurement.reference_value }}{{ item.unit_price_measurement.reference_unit }}</p>
+                {%- endif -%}
+                <div class="cart-item__controls">
+                  <label class="visually-hidden" for="Qty-{{ item.key }}">{{ 'products.product.quantity' | t }}</label>
+                  <input id="Qty-{{ item.key }}" class="field field--qty" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                  <a href="{{ item.url_to_remove }}" class="link-small">{{ 'cart.remove' | t }}</a>
+                </div>
+              </div>
+              <div class="cart-item__price">
+                {%- if item.original_line_price != item.final_line_price -%}
+                  <s class="muted">{{ item.original_line_price | money }}</s>
+                {%- endif -%}
+                <span>{{ item.final_line_price | money }}</span>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="cart__footer">
+          {%- if settings.cart_show_note -%}
+            <div class="cart__note">
+              <label for="CartNote">{{ 'cart.note' | t }}</label>
+              <textarea id="CartNote" class="field" name="note" rows="3">{{ cart.note }}</textarea>
+            </div>
+          {%- endif -%}
+          <div class="cart__summary card">
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <p class="cart__row"><span>{{ discount.title | escape }}</span><span>-{{ discount.total_allocated_amount | money }}</span></p>
+            {%- endfor -%}
+            <p class="cart__row cart__total"><span>{{ 'cart.subtotal' | t }}</span><span>{{ cart.total_price | money_with_currency }}</span></p>
+            <p class="muted small">{{ 'cart.taxes' | t }}</p>
+            <button type="submit" name="update" class="button button--outline button--full">{{ 'cart.update' | t }}</button>
+            <button type="submit" name="checkout" class="button button--large button--full">{{ 'cart.checkout' | t }}</button>
+            {%- if additional_checkout_buttons -%}
+              <div class="cart__extra">{{ content_for_additional_checkout_buttons }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

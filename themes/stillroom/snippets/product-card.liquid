@@ -1,0 +1,52 @@
+{%- comment -%}
+  Renders a product card. Accepts: product (optional; renders a placeholder when blank)
+{%- endcomment -%}
+{%- liquid
+  assign ratio_class = 'media-frame--' | append: settings.card_image_ratio
+-%}
+<div class="product-card">
+  {%- if product != blank -%}
+    <a href="{{ product.url }}" class="product-card__link">
+      <div class="product-card__media media-frame {{ ratio_class }}{% if settings.card_show_secondary_image and product.media.size > 1 %} has-hover{% endif %}"{% if settings.card_image_ratio == 'natural' and product.featured_media %} style="--ratio: {{ product.featured_media.aspect_ratio }}"{% endif %}>
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 900 | image_tag:
+            widths: '300, 450, 600, 900',
+            sizes: '(min-width: 990px) 25vw, 50vw',
+            loading: 'lazy',
+            class: 'cover product-card__image',
+            alt: product.featured_media.alt | default: product.title
+          }}
+          {%- if settings.card_show_secondary_image and product.media.size > 1 -%}
+            {{ product.media[1] | image_url: width: 900 | image_tag:
+              widths: '300, 450, 600, 900',
+              sizes: '(min-width: 990px) 25vw, 50vw',
+              loading: 'lazy',
+              class: 'cover product-card__image product-card__image--hover',
+              alt: ''
+            }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+        {%- if product.available == false -%}
+          <span class="badge product-card__badge">{{ 'products.product.sold_out' | t }}</span>
+        {%- elsif product.compare_at_price > product.price -%}
+          <span class="badge badge--sale product-card__badge">{{ 'products.product.on_sale' | t }}</span>
+        {%- endif -%}
+      </div>
+      <div class="product-card__info">
+        {%- if settings.card_show_vendor -%}<p class="eyebrow">{{ product.vendor | escape }}</p>{%- endif -%}
+        <h3 class="product-card__title">{{ product.title | escape }}</h3>
+        {% render 'price', product: product %}
+      </div>
+    </a>
+  {%- else -%}
+    <div class="product-card__media media-frame {{ ratio_class }}">
+      {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    <div class="product-card__info">
+      <h3 class="product-card__title">{{ 'products.product.placeholder_title' | t }}</h3>
+      <div class="price"><span class="price__current">{{ 1999 | money }}</span></div>
+    </div>
+  {%- endif -%}
+</div>

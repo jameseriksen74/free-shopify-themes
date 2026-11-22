@@ -1,0 +1,17 @@
+<div class="section">
+  <div class="page-width">
+    <div class="collection-hero"><h1 class="h1">{{ 'collections.all_title' | t }}</h1></div>
+    {%- paginate collections by 24 -%}
+      <ul class="collection-grid" role="list">
+        {%- for collection in collections -%}
+          <li>{% render 'collection-card', collection: collection %}</li>
+        {%- endfor -%}
+      </ul>
+      {%- if paginate.pages > 1 -%}{% render 'pagination', paginate: paginate %}{%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

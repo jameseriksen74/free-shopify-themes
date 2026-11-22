@@ -1,0 +1,89 @@
+<footer class="site-footer">
+  <div class="page-width">
+    <div class="site-footer__grid">
+      {%- for block in section.blocks -%}
+        <div class="site-footer__block" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}
+            <h2 class="site-footer__heading">{{ block.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- case block.type -%}
+            {%- when 'text' -%}
+              <div class="rte">{{ block.settings.text }}</div>
+            {%- when 'menu' -%}
+              <ul class="site-footer__links" role="list">
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                {%- endfor -%}
+              </ul>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+
+      {%- liquid
+        assign has_social = false
+        if settings.social_instagram != blank or settings.social_pinterest != blank or settings.social_tiktok != blank or settings.social_facebook != blank
+          assign has_social = true
+        endif
+      -%}
+      {%- if has_social -%}
+        <div class="site-footer__block">
+          <h2 class="site-footer__heading">{{ 'sections.footer.follow' | t }}</h2>
+          <ul class="social-links" role="list">
+            {%- if settings.social_instagram != blank -%}<li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a></li>{%- endif -%}
+            {%- if settings.social_pinterest != blank -%}<li><a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener">Pinterest</a></li>{%- endif -%}
+            {%- if settings.social_tiktok != blank -%}<li><a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TikTok</a></li>{%- endif -%}
+            {%- if settings.social_facebook != blank -%}<li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener">Facebook</a></li>{%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }} &middot; {{ powered_by_link }}
+      </p>
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="payment-icons" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if settings.show_theme_credit -%}
+        <p class="site-footer__credit">
+          {{ 'sections.footer.theme_credit_html' | t: link: '<a href="https://prettythingsonline.com" target="_blank" rel="noopener">Pretty Things Online</a>' }}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "About us" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell customers what makes your shop special.</p>" }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

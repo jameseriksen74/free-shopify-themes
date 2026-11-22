@@ -1,0 +1,101 @@
+{
+  "accessibility": { "skip_to_content": "Skip to content" },
+  "general": {
+    "page": "Page {{ page }}",
+    "404": { "title": "This page wandered off", "text": "We couldn't find what you were looking for. Let's get you back to the good stuff." },
+    "pagination": { "label": "Pagination", "next": "Next page", "previous": "Previous page" },
+    "password": { "opening_soon": "Opening soon", "enter": "Enter with password", "label": "Password", "submit": "Enter" },
+    "search": {
+      "search": "Search",
+      "title": "Search",
+      "placeholder": "Search the shop",
+      "submit": "Search",
+      "no_results": "No results for \"{{ terms }}\"",
+      "results_count": { "one": "{{ count }} result for \"{{ terms }}\"", "other": "{{ count }} results for \"{{ terms }}\"" }
+    }
+  },
+  "sections": {
+    "header": { "menu": "Menu", "cart": "Cart" },
+    "footer": { "follow": "Follow along", "theme_credit_html": "Theme by {{ link }}" },
+    "featured_collection": { "view_all": "View all" },
+    "collection_list": { "placeholder": "Collection name" },
+    "related_products": { "heading": "You may also love" }
+  },
+  "newsletter": { "label": "Email address", "button": "Subscribe", "success": "Thanks for subscribing!" },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "quantity": "Quantity",
+      "variant": "Variant",
+      "price_from": "From {{ price }}",
+      "regular_price": "Regular price",
+      "placeholder_title": "Product title",
+      "view_image": "View image {{ number }}",
+      "pickup_available": "Pickup available at {{ location }}"
+    }
+  },
+  "collections": {
+    "all_title": "Collections",
+    "empty": "No products here yet.",
+    "product_count": { "one": "{{ count }} product", "other": "{{ count }} products" },
+    "sorting": { "title": "Sort by" },
+    "filters": { "apply": "Apply", "clear_all": "Clear all", "from": "From", "to": "To" }
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue shopping",
+    "remove": "Remove",
+    "note": "Order note",
+    "subtotal": "Subtotal",
+    "taxes": "Taxes, discounts and shipping are calculated at checkout.",
+    "update": "Update cart",
+    "checkout": "Check out"
+  },
+  "contact": { "name": "Name", "email": "Email", "message": "Message", "send": "Send", "success": "Thanks for reaching out. We'll be in touch soon." },
+  "blogs": {
+    "back": "Back to the journal",
+    "comments": { "title": "Comments", "post": "Post comment", "success": "Your comment was posted." }
+  },
+  "customer": {
+    "fields": {
+      "email": "Email", "password": "Password", "password_confirm": "Confirm password",
+      "first_name": "First name", "last_name": "Last name",
+      "address1": "Address", "address2": "Apartment, suite, etc.", "city": "City",
+      "country": "Country", "province": "State or province", "zip": "Postal code", "phone": "Phone"
+    },
+    "login": { "title": "Log in", "submit": "Log in", "create": "Create an account", "guest": "Continue as guest" },
+    "recover": { "link": "Forgot your password?", "submit": "Send reset link", "success": "We've emailed you a link to reset your password." },
+    "register": { "title": "Create account", "submit": "Create account" },
+    "account": {
+      "title": "Account",
+      "logout": "Log out",
+      "orders": "Order history",
+      "no_orders": "You haven't placed any orders yet.",
+      "details": "Account details",
+      "addresses": { "one": "View {{ count }} address", "other": "View {{ count }} addresses" }
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "number": "Order", "date": "Date", "status": "Status", "total": "Total",
+      "product": "Product", "quantity": "Quantity", "billing": "Billing address", "shipping": "Shipping address"
+    },
+    "addresses": {
+      "title": "Your addresses", "default": "Default", "edit": "Edit", "delete": "Delete",
+      "add": "Add a new address", "save": "Save address", "set_default": "Set as default address"
+    },
+    "activate": { "title": "Activate account", "submit": "Activate account", "decline": "Decline invitation" },
+    "reset": { "title": "Reset password", "submit": "Reset password" }
+  },
+  "gift_card": {
+    "title": "Your gift card",
+    "expired": "This gift card is expired or disabled",
+    "initial_value": "Originally {{ value }}",
+    "expires_on": "Expires on {{ date }}",
+    "apple_wallet": "Add to Apple Wallet",
+    "shop": "Start shopping"
+  }
+}

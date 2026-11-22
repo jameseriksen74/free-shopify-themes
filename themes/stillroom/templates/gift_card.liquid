@@ -1,0 +1,35 @@
+{%- layout none -%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ 'gift_card.title' | t }} &ndash; {{ shop.name }}</title>
+    {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    {% render 'css-variables' %}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body class="template-gift-card">
+    <main class="password">
+      <div class="password__card card">
+        <p class="eyebrow">{{ shop.name }}</p>
+        <h1 class="h1">{{ 'gift_card.title' | t }}</h1>
+        {%- if gift_card.enabled == false or gift_card.expired -%}
+          <p class="badge">{{ 'gift_card.expired' | t }}</p>
+        {%- endif -%}
+        <p class="display">{{ gift_card.balance | money }}</p>
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          <p class="muted">{{ 'gift_card.initial_value' | t: value: gift_card.initial_value | money }}</p>
+        {%- endif -%}
+        <p class="gift-code">{{ gift_card.code | format_code }}</p>
+        {%- if gift_card.pass_url -%}
+          <a href="{{ gift_card.pass_url }}"><img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_card.apple_wallet' | t }}" loading="lazy"></a>
+        {%- endif -%}
+        <p><a href="{{ shop.url }}" class="button">{{ 'gift_card.shop' | t }}</a></p>
+        {%- if gift_card.expires_on -%}<p class="muted small">{{ 'gift_card.expires_on' | t: date: gift_card.expires_on | date: '%B %d, %Y' }}</p>{%- endif -%}
+      </div>
+    </main>
+  </body>
+</html>

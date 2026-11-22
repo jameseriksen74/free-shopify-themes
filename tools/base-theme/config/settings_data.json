@@ -1,0 +1,32 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_background": "#FBF7F2",
+      "color_surface": "#F3EAE1",
+      "color_text": "#2E2623",
+      "color_accent": "#B5645B",
+      "color_accent_text": "#FFFFFF",
+      "color_secondary": "#8A9A7B",
+      "color_sale": "#A4423A"
+    },
+    "Sage": {
+      "color_background": "#F6F7F2",
+      "color_surface": "#E7EBDF",
+      "color_text": "#25302A",
+      "color_accent": "#5E7458",
+      "color_accent_text": "#FFFFFF",
+      "color_secondary": "#C59A6B",
+      "color_sale": "#9C4B33"
+    },
+    "Midnight": {
+      "color_background": "#1E1B22",
+      "color_surface": "#2A2630",
+      "color_text": "#F4EDE6",
+      "color_accent": "#E5A9A0",
+      "color_accent_text": "#1E1B22",
+      "color_secondary": "#B9C4A8",
+      "color_sale": "#F08C7E"
+    }
+  }
+}

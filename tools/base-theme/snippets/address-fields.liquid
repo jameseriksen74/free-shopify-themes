@@ -1,0 +1,20 @@
+{%- comment -%} Accepts: form (required), id (required) {%- endcomment -%}
+<label for="AddrFirst-{{ id }}">{{ 'customer.fields.first_name' | t }}</label>
+<input id="AddrFirst-{{ id }}" class="field" type="text" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+<label for="AddrLast-{{ id }}">{{ 'customer.fields.last_name' | t }}</label>
+<input id="AddrLast-{{ id }}" class="field" type="text" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+<label for="AddrAddress1-{{ id }}">{{ 'customer.fields.address1' | t }}</label>
+<input id="AddrAddress1-{{ id }}" class="field" type="text" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1">
+<label for="AddrAddress2-{{ id }}">{{ 'customer.fields.address2' | t }}</label>
+<input id="AddrAddress2-{{ id }}" class="field" type="text" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2">
+<label for="AddrCity-{{ id }}">{{ 'customer.fields.city' | t }}</label>
+<input id="AddrCity-{{ id }}" class="field" type="text" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+<label for="AddrCountry-{{ id }}">{{ 'customer.fields.country' | t }}</label>
+<select id="AddrCountry-{{ id }}" class="field field--select" name="address[country]" data-default="{{ form.country }}" autocomplete="country">{{ all_country_option_tags }}</select>
+<label for="AddrProvince-{{ id }}">{{ 'customer.fields.province' | t }}</label>
+<input id="AddrProvince-{{ id }}" class="field" type="text" name="address[province]" value="{{ form.province }}" autocomplete="address-level1">
+<label for="AddrZip-{{ id }}">{{ 'customer.fields.zip' | t }}</label>
+<input id="AddrZip-{{ id }}" class="field" type="text" name="address[zip]" value="{{ form.zip }}" autocomplete="postal-code">
+<label for="AddrPhone-{{ id }}">{{ 'customer.fields.phone' | t }}</label>
+<input id="AddrPhone-{{ id }}" class="field" type="tel" name="address[phone]" value="{{ form.phone }}" autocomplete="tel">
+<label class="checkbox"><input type="checkbox" name="address[default]" value="1"> {{ 'customer.addresses.set_default' | t }}</label>

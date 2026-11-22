@@ -1,0 +1,45 @@
+<article class="section">
+  <div class="page-width page-width--narrow">
+    <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+    <h1 class="h1">{{ article.title | escape }}</h1>
+    {%- if article.image -%}
+      <div class="article__image media-frame">
+        {{ article.image | image_url: width: 1600 | image_tag: widths: '600, 1000, 1600', sizes: '(min-width: 800px) 760px, 100vw', class: 'cover', loading: 'eager' }}
+      </div>
+    {%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+
+    {%- if blog.comments_enabled? -%}
+      <div class="comments">
+        <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
+        {%- paginate article.comments by 20 -%}
+          {%- for comment in article.comments -%}
+            <div class="comment card">
+              <div class="rte">{{ comment.content }}</div>
+              <p class="muted small">{{ comment.author }} &middot; {{ comment.created_at | time_tag: format: 'date' }}</p>
+            </div>
+          {%- endfor -%}
+        {%- endpaginate -%}
+        {%- form 'new_comment', article, class: 'form-stack' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-message form-message--success" role="status">{{ 'blogs.comments.success' | t }}</p>
+          {%- elsif form.errors -%}
+            <div class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <label for="CommentAuthor">{{ 'contact.name' | t }}</label>
+          <input id="CommentAuthor" class="field" type="text" name="comment[author]" value="{{ form.author }}" required>
+          <label for="CommentEmail">{{ 'contact.email' | t }}</label>
+          <input id="CommentEmail" class="field" type="email" name="comment[email]" value="{{ form.email }}" required>
+          <label for="CommentBody">{{ 'contact.message' | t }}</label>
+          <textarea id="CommentBody" class="field" name="comment[body]" rows="5" required>{{ form.body }}</textarea>
+          <button type="submit" class="button">{{ 'blogs.comments.post' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+    <p><a class="link-arrow" href="{{ blog.url }}">{{ 'blogs.back' | t }}</a></p>
+  </div>
+</article>
+
+{% schema %}
+{ "name": "Blog post", "settings": [] }
+{% endschema %}

@@ -1,0 +1,13 @@
+{%- comment -%} Accepts: article (required) {%- endcomment -%}
+<a href="{{ article.url }}" class="article-card">
+  <div class="media-frame media-frame--landscape">
+    {%- if article.image -%}
+      {{ article.image | image_url: width: 900 | image_tag: widths: '300, 600, 900', sizes: '(min-width: 990px) 33vw, 100vw', loading: 'lazy', class: 'cover' }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  <p class="eyebrow">{{ article.published_at | time_tag: format: 'date' }}</p>
+  <h2 class="h3">{{ article.title | escape }}</h2>
+  {%- if article.excerpt != blank -%}<p class="muted">{{ article.excerpt | strip_html | truncatewords: 24 }}</p>{%- endif -%}
+</a>

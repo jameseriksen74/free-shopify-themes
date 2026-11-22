@@ -1,0 +1,47 @@
+{
+  "current": "Zapline",
+  "presets": {
+    "Zapline": {
+      "color_background": "#0E0E10",
+      "color_surface": "#1A1A1F",
+      "color_text": "#F2F2EE",
+      "color_accent": "#D4FF3A",
+      "color_accent_text": "#0E0E10",
+      "color_secondary": "#7B61FF",
+      "color_sale": "#FF5C39",
+      "type_heading_font": "montserrat_n7",
+      "type_body_font": "karla_n4",
+      "corner_radius": 0,
+      "button_radius": 0,
+      "page_width": 1400
+    },
+    "Daylight": {
+      "color_background": "#F1F0EA",
+      "color_surface": "#E3E1D8",
+      "color_text": "#0E0E10",
+      "color_accent": "#0E0E10",
+      "color_accent_text": "#D4FF3A",
+      "color_secondary": "#7B61FF",
+      "color_sale": "#E8401C",
+      "type_heading_font": "montserrat_n7",
+      "type_body_font": "karla_n4",
+      "corner_radius": 0,
+      "button_radius": 0,
+      "page_width": 1400
+    },
+    "Ultraviolet": {
+      "color_background": "#120B24",
+      "color_surface": "#1E1438",
+      "color_text": "#F4F0FF",
+      "color_accent": "#FF4FD8",
+      "color_accent_text": "#120B24",
+      "color_secondary": "#3AF2FF",
+      "color_sale": "#FFB23A",
+      "type_heading_font": "montserrat_n7",
+      "type_body_font": "karla_n4",
+      "corner_radius": 0,
+      "button_radius": 0,
+      "page_width": 1400
+    }
+  }
+}
