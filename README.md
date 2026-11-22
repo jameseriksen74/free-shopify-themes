@@ -2,7 +2,7 @@
 
 Three free, modern **Shopify Online Store 2.0** themes, made with care by **[Pretty Things Online](https://prettythingsonline.com)**. Free for personal and commercial use under the MIT license.
 
-**[⬇ Download the latest release](../../releases/latest)**
+**Download:** [Petalpost](https://github.com/jameseriksen74/free-shopify-themes/raw/main/downloads/petalpost-theme-1.0.0.zip) · [Zapline](https://github.com/jameseriksen74/free-shopify-themes/raw/main/downloads/zapline-theme-1.0.0.zip) · [Stillroom](https://github.com/jameseriksen74/free-shopify-themes/raw/main/downloads/stillroom-theme-1.0.0.zip) · [All three](https://github.com/jameseriksen74/free-shopify-themes/raw/main/downloads/pretty-things-online-free-shopify-themes-bundle.zip)
 
 | | Theme | Style | Great for |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Three free, modern **Shopify Online Store 2.0** themes, made with care by **[Pre
 
 ## Install
 
-1. Download a theme zip from the [latest release](../../releases/latest) (don't unzip it).
+1. Download a theme zip from the links above or the `downloads/` folder (don't unzip it).
 2. In Shopify admin go to **Online Store > Themes > Add theme > Upload zip file**.
 3. Click **Customize**, add your logo, images and collections, then **Publish**.
 
@@ -53,7 +53,8 @@ You can also connect this repo to your store with Shopify's GitHub integration a
 
 ## Repo layout
 
-- `themes/<name>/`: ready-to-upload theme source
+- `downloads/`: ready-to-upload theme zips
+- `themes/<name>/`: theme source
 - `listings/`: marketplace listing copy
 - `tools/`: the shared base theme and the scripts that build the three looks, run Theme Check and render previews
 
